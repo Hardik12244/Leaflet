@@ -12,9 +12,15 @@ async function handleUserSignUp(req,res){
 
 async function handleUserSignIn(req,res) {
     const {email,password} = req.body;
-    const user = await User.matchPassword(email,password);
-    console.log(user);
-    return res.redirect('/')
-
+    try{
+        const token = await User.matchPassword(email,password);
+        return res.cookie('token',token).redirect('/');
+    }
+    catch(error){
+        return res.render('signin',{
+            error:"Incorrect password",
+        });
+    }
+    
 }
 module.exports = {handleUserSignUp,handleUserSignIn};
