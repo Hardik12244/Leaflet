@@ -10,7 +10,21 @@
     <%- include('./partials/script') %>
     <%- include('./partials/nav') %>
 
-    
+    <div class="m-5 row">
+        <form action="/user/signin" method="post">
+        
+            <div class="mb-2">
+                <label for="" class="mb-3">Email</label>
+                <input class="form-control mb-5" type="email" name="email">
+            </div>
+            <div class="mb-2">
+                <label for="" class="mb-3">Password</label>
+                <input class="form-control mb-5" type="password" name="password">
+            </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+    </div>
 
 </body>
 </html>
