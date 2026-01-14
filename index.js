@@ -12,9 +12,9 @@ const port = 8000;
 
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
+app.use(checkauth("token"));
 app.use('/user',userRoute)
 app.use('/blog',blogRoute)
-app.use(checkauth("token"));
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
