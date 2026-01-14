@@ -21,6 +21,9 @@ async function handleUserSignIn(req,res) {
             error:"Incorrect password",
         });
     }
-    
 }
-module.exports = {handleUserSignUp,handleUserSignIn};
+
+async function handleUserLogout(req,res){
+    return res.clearCookie("token").redirect('/');
+}
+module.exports = {handleUserSignUp,handleUserSignIn,handleUserLogout};

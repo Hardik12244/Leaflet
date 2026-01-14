@@ -3,19 +3,23 @@ const express = require("express");
 const path = require("path");
 const userRoute = require('./routes/user')
 const {connectMongo} = require('./connect');
+const cookieParser = require('cookie-parser');
+const { checkauth } = require('./middlewares/auth');
 
 const app = express();
 const port = 8000;
 
 app.use(express.urlencoded({extended:false}));
-
+app.use(cookieParser());
 app.use('/user',userRoute)
-
+app.use(checkauth("token"));
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
 app.get('/',(req,res)=>{
-    res.render("home");
+    res.render("home",{
+        user:req.user,
+    });
 })
 
 connectMongo(process.env.MONGO)
