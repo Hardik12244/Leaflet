@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <%- include('./partials/head') %>
+</head>
+<body>
+    <%- include('./partials/script') %>
+    <%- include('./partials/nav') %>
+
+    <div class="m-5">
+        <form action="/blog" method="post">
+            <div class="mb-3">
+                <label for="coverImage" class="form-label">Cover Image</label>
+                <input type="file" class="form-control" id="coverImage" >
+            </div>
+
+            <div>
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" aria-describedby="title">
+            </div>
+
+            <div class="mb-3">
+                <label for="body" class="form-label">Body</label>
+                <textarea name="body" id="body" class="form-control"></textarea>
+            </div>
+
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
