@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <%- include('./partials/head') %>
 </head>
+
 <body>
     <%- include('./partials/script') %>
-    <%- include('./partials/nav') %>
-
-    <div>
-        Hi
-    </div>
+        <%- include('./partials/nav') %>
+                <div>
+                    <% blogs.forEach(blog => { %>
+                        <div class="card" style="width: 18rem;">
+                        <img src="<%= blog.coverImage %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= blog.title %></h5>
+                            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
 
 </body>
+
 </html>

@@ -6,6 +6,7 @@ const blogRoute = require('./routes/blog')
 const {connectMongo} = require('./connect');
 const cookieParser = require('cookie-parser');
 const { checkauth } = require('./middlewares/auth');
+const blog = require('./models/blog');
 
 const app = express();
 const port = 8000;
@@ -15,12 +16,15 @@ app.use(cookieParser());
 app.use(checkauth("token"));
 app.use('/user',userRoute)
 app.use('/blog',blogRoute)
+app.use(express.static(path.resolve('./public')))
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
-app.get('/',(req,res)=>{
+app.get('/',async (req,res)=>{
+    const allBlog = await blog.find({});
     res.render("home",{
         user:req.user,
+        blogs:allBlog,
     });
 })
 
