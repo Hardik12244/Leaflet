@@ -1,4 +1,5 @@
 const Blog = require('../models/blog')
+const Comment = require('../models/comment');
 
 async function handleBlog(req,res){
     const {title,body} = req.body;
@@ -13,10 +14,23 @@ async function handleBlog(req,res){
 
 async function handleEachBlog(req,res){
     const blog = await Blog.findById(req.params.id).populate("createdBy");
-    console.log(blog);
+    const comments = await Comment.find({blogId:req.params.id}).populate("createdBy");
+    console.log(comments);
     return res.render('eachBlog',{
         user:req.user,
         blog,
+        comments,
     });
 }
-module.exports={handleBlog,handleEachBlog};
+
+async function handleComment(req,res){
+    await Comment.create({
+        content : req.body.content,
+        blogId:req.params.blogId,
+        createdBy:req.user._id,
+    });
+    return res.redirect(`/blog/${req.params.blogId}`);
+}
+
+
+module.exports={handleBlog,handleEachBlog,handleComment};

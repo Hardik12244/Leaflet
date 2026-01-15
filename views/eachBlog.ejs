@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
-        <%- include('./partials/head') %>
+    <%- include('./partials/head') %>
 </head>
+
 <body>
     <%- include('./partials/script') %>
-    <%- include('./partials/nav') %>
+        <%- include('./partials/nav') %>
 
-        <div class="container m-5">
-            
-                <h1><%= blog.title %></h1>
+            <div class="container m-5">
+
+                <h1>
+                    <%= blog.title %>
+                </h1>
                 <img src="<%= blog.coverImage %>" width="750px">
                 <div class="p-2">
                     <img src="<%= blog.createdBy.profilePicture %>" width="45px">
                     <%= blog.createdBy.fullName %>
                 </div>
-                <p class="pt-3"><%= blog.body %></p>
-        </div>
+                <p class="pt-3">
+                    <%= blog.body %>
+                </p>
+            </div>
+
+            <div class="containter m-5 mt-3">
+                <h1>Comments (<%= comments.length %>)</h1>
+                <% if (locals.user) { %>
+                    <form action="/blog/comment/<%= blog._id %>" method="post">
+                        <div class="mb-3">
+                            <input type="text" name="content" class="form-control" placeholder="Enter your Comment">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                    <% } %>
+
+                        <div class="mt-5">
+                            <% comments.forEach(comment=> { %>
+                                <div class="mb-4">
+                                <div>
+                                    <img src="<%= comment.createdBy.profilePicture %>" alt="" width="30px">
+                                    <%= comment.createdBy.fullName %>
+                                </div>
+                                <div><%= comment.content %></div>
+                                </div>
+                                <% }) %>
+                        </div>
+                        
+
+            </div>
 </body>
+
 </html>
