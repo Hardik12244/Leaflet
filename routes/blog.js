@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../middlewares/blog');
-const { handleBlog } = require('../controllers/blog');
+const { handleBlog, handleEachBlog } = require('../controllers/blog');
+const Blog = require('../models/blog')
+
 
 router.get('/addBlog',(req,res)=>{
     return res.render('blog',{
@@ -11,5 +13,6 @@ router.get('/addBlog',(req,res)=>{
 
 router.post('/',upload.single("coverImage"),handleBlog);
 
+router.get("/:id",handleEachBlog);
 
 module.exports = router;
