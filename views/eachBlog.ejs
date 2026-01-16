@@ -40,13 +40,10 @@
         display: flex;
         gap: 10px;
     }
-
-    .bttn {
-        padding: 0px 10px;
-        height: auto;
-        font-size: 14px;
-        line-height: 1;
+    .comment-strip{
+        border-bottom: 1px solid #e6e6e6;
     }
+
 </style>
 
 <body>
@@ -92,7 +89,7 @@
 
                 <div class="mt-5">
                     <% comments.forEach(comment=> { %>
-                        <div class="mb-4">
+                        <div class="mb-4 comment-strip">
                             <div>
                                 <img src="<%= comment.createdBy.profilePicture %>" alt="" width="30px">
                                 <%= comment.createdBy.fullName %>
