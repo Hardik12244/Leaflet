@@ -8,25 +8,43 @@
     <%- include('./partials/head') %>
 </head>
 
+<style>
+    body {
+        background-image: url('/assets/login.png');
+    }
+</style>
+
 <body>
     <%- include('./partials/script') %>
         <%- include('partials/nav') %>
 
-            <div class="container">
+            <div class="main-div">
+
+
                 <form action="/user/signin" method="post">
 
-                    <div class="mb-2">
-                        <label for="" class="mb-3">Email</label>
-                        <input class="form-control mb-5" type="email" name="email">
-                    </div>
-                    <div class="mb-2">
-                        <label for="" class="mb-3">Password</label>
-                        <input class="form-control mb-5" type="password" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                    <div class="box">
+                        <div>
+                            <label for="" class="mb-2">Email</label>
+                            <input class="form-control mb-3" type="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="" class="mb-2">Password</label>
+                            <input class="form-control mb-5" type="password" name="password" required>
+                        </div>
+                        <button type="submit" class="new-btn">Submit</button>
 
+                        <div class="New-user">
+                            <div>New User ?</div>
+                            <a href="/user/signup"><button class="my-btn" type="button">Create Account</button></a>
+                        </div>
+
+                    </div>
+
+                </form>
             </div>
+
+
 
 </body>
 

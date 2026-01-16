@@ -1,34 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <%- include('./partials/head') %>
 </head>
+<style>
+    body {
+        background-image: url('/assets/login.png');
+    }
+
+    .new-box {
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fef8f3;
+        padding: 40px 50px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        width: 350px;
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+
+    .my-new-btn {
+        font-size: 16px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: 1px solid #242424;
+        background: black;
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    
+</style>
+
 <body>
     <%- include('./partials/script') %>
-    <%- include('./partials/nav') %>
+        <%- include('./partials/nav') %>
 
-    <div class="m-5 row">
-        <form action="/user/signup" method="post">
-        
-            <div class="mb-2">
-                <label for="" class="mb-3">Name</label>
-                <input class="form-control mb-5" type="text" name="fullName">
-            </div>
-            <div class="mb-2">
-                <label for="" class="mb-3">Email</label>
-                <input class="form-control mb-5" type="email" name="email">
-            </div>
-            <div class="mb-2">
-                <label for="" class="mb-3">Password</label>
-                <input class="form-control mb-5" type="password" name="password">
-            </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+            <div class="main-div">
+                <form action="/user/signup" method="post">
+                    <div class="new-box">
+                        <div>
+                            <label for="" class="mb-2">Name</label>
+                            <input class="form-control mb-3" type="text" name="fullName" required>
+                        </div>
+                        <div>
+                            <label for="" class="mb-2">Email</label>
+                            <input class="form-control mb-3" type="email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="" class="mb-2">Password</label>
+                            <input class="form-control mb-5" type="password" name="password" required>
+                        </div>
+                        <button type="submit" class="new-btn">Submit</button>
 
-    </div>
-    
+                        <div class="New-user">
+                            <div>Old User ?</div>
+                            <a href="/user/signin"><button class="my-new-btn" type="button">Login</button></a>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+
 </body>
+
 </html>

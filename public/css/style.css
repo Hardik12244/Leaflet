@@ -12,3 +12,61 @@ h1, h2, h3, h4, h5, h6,
 .my-logo {
   font-family: 'Inter', sans-serif;
 }
+ .main-div {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        justify-content: center;
+    }
+   form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+      .box {
+        margin-top: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fef8f3;
+        padding: 40px 50px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
+        -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    }
+
+    .my-btn {
+        font-size: 14px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid #242424;
+        background: black;
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .new-btn {
+        background-color: rgb(240, 44, 44);
+        color: white;
+        border-radius: 10px;
+        padding: 4px 10px;
+        border: none;
+        font-size: 18px;
+
+    }
+   
+    .New-user {
+        margin-top: 28px;
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
