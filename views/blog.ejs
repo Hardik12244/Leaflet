@@ -1,35 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <%- include('./partials/head') %>
 </head>
+
+<style>
+    body {
+        background-image: url('/assets/blog.png');
+    }
+
+    .new-box {
+        margin-top: 20px;
+        border-radius: 20px;
+        margin-left: 15%;
+        margin-right: 15%;
+        min-height: calc(100vh - 80px);
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+    }
+
+    .new-box form {
+        width: 100%;
+        max-width: 850px;
+        padding: 35px 40px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(8px);
+    }
+
+    .blog-image {
+        margin-bottom: 25px;
+    }
+
+    .blog-title {
+        margin-bottom: 25px;
+        width: 100%;
+    }
+
+    .blog-title label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .blog-title input {
+        font-size: 1.4rem;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 600;
+         width: 100%;
+
+    }
+
+    .blog-body {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    .blog-body label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .blog-body textarea {
+        min-height: 350px;
+        padding: 16px;
+        font-size: 1rem;
+        line-height: 1.6;
+        border-radius: 14px;
+        resize: vertical;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .new-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
 <body>
     <%- include('./partials/script') %>
-    <%- include('./partials/nav') %>
+        <%- include('./partials/nav') %>
 
-    <div class="m-5">
-        <form action="/blog" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="coverImage" class="form-label">Cover Image</label>
-                <input name="coverImage" type="file" class="form-control" id="coverImage" aria-describedby="coverImage" >
+            <div class="new-box">
+                <form action="/blog" method="post" enctype="multipart/form-data">
+                    <div class="blog-image">
+                        <label for="coverImage" class="form-label">Cover Image</label>
+                        <input name="coverImage" type="file" class="form-control" id="coverImage"
+                            aria-describedby="coverImage" requried>
+                    </div>
+
+                    <div class="blog-title">
+                        <div class="new-label"><label for="body">Title</label></div>
+                         <input name="title" type="text"
+                            class="form-control" id="title" aria-describedby="title" required>
+                    </div>
+
+                    <div class="blog-body">
+                        <div class="new-label"><label for="body">Body</label></div>
+                        <textarea name="body" id="body" class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="new-btn">Submit</button>
+                </form>
             </div>
-
-            <div>
-                <label for="title" class="form-label">Title</label>
-                <input name="title" type="text" class="form-control" id="title" aria-describedby="title">
-            </div>
-
-            <div class="mb-3">
-                <label for="body" class="form-label">Body</label>
-                <textarea name="body" id="body" class="form-control"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
 
 </body>
+
 </html>
