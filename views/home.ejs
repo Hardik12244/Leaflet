@@ -11,51 +11,53 @@
 <style>
     .title-text {
         font-family: 'Playfair Display', serif;
-        font-size: 72px;
         font-weight: 700;
         line-height: 1.05;
         letter-spacing: -1.5px;
         color: #242424;
         margin-bottom: 20px;
+        font-size: clamp(3.0rem, 6vw, 4.5rem);
+
     }
 
     .sub-text {
         font-family: 'Source Serif 4', serif;
-        font-size: 20px;
         line-height: 1.6;
         color: #6b6b6b;
-        max-width: 420px;
         margin-bottom: 30px;
+        font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+        max-width: 40ch;
     }
 
 
     .main-btn {
         font-family: 'Inter', sans-serif;
-        font-size: 18px;
         font-weight: 500;
-        padding: 10px 22px;
         border-radius: 999px;
         background: #242424;
         color: #ffffff;
         text-decoration: none;
         transition: 0.2s ease;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        padding: 0.6em 1.2em;
     }
 
     .left-box {
-        margin-top: 100px;
+        margin-top: 20px;
     }
 
     .right-box {
         display: block;
-        max-width: 60%;
+        max-width: 100%;
         margin-right: 0;
     }
 
     .main-box {
         display: flex;
-        margin-left: 80px;
-        /* background: #f7f6f2; */
-        margin-bottom: 20px;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 1.5rem;
+        margin: 0;
     }
 
     .section-strip {
@@ -71,17 +73,19 @@
         font-weight: 600;
         letter-spacing: 0.8px;
         color: #2a2a2a;
-        padding-left: 130px;
-        padding-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: linear-gradient(90deg, #222, #888, #222);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .hero-image {
-        max-width: 90%;
-        margin-left: 120px;
+        width: 100%;
+        max-width: 500px;
         height: auto;
+        margin: 0 auto;
     }
 
     .hero-image {
@@ -131,7 +135,11 @@
         font-size: 14px;
         color: #6b6b6b;
         margin: 0;
-        max-width: 600px;
+        max-width: 200px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
     }
 
     .my-card-img {
@@ -140,6 +148,49 @@
         object-fit: cover;
         border-radius: 6px;
         flex-shrink: 0;
+    }
+
+    .date {
+        font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    }
+
+    .click {
+        font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    }
+
+    .blog-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+
+    @media (min-width:768px) {
+        .main-box {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3rem 5rem;
+        }
+
+        .left-box {
+            margin-top: 0;
+        }
+
+        .my-card-body {
+            font-size: 18px;
+            max-width: 600px;
+            -webkit-line-clamp: 4;
+        }
+
+        .my-card-title {
+            font-size: 24px;
+        }
+
+        .my-card-img {
+            width: 400px;
+            height: 240px;
+        }
     }
 </style>
 
@@ -157,7 +208,7 @@
                 </div>
 
                 <div class="right-box">
-                    <img src="/assets/home.jpg" width="800px" class="hero-image">
+                    <img src="/assets/home.jpg" class="hero-image">
                 </div>
 
             </div>
@@ -167,26 +218,28 @@
                 <div class="section-text">Latest Blogs</div>
 
                 <div class="container mt-5 ">
-                    <div class="row row-cols-4">
+                    <div class="blog-feed">
                         <% blogs.forEach(blog=> { %>
-
-                            <div class="col-12">
                                 <a href="/blog/<%= blog._id %>" class="my-card">
 
                                     <div class="my-card-content">
                                         <h5 class="my-card-title">
                                             <%= blog.title %>
                                         </h5>
+                                        <div class=" date">
+                                            <%= new Date(blog.createdAt).toLocaleString('en-IN', {hour: '2-digit'
+                                                ,minute: '2-digit' ,hour12: true,day: '2-digit' ,month: 'short'
+                                                ,year: 'numeric' }) %>
+                                        </div>
                                         <p class="my-card-body">
                                             <%= blog.body.split(" ").slice(0, 40).join(" ") %>
                                         </p>
-                                        <div><%= new Date(blog.createdAt).toLocaleString('en-IN', {hour: '2-digit',minute: '2-digit',hour12: true,day: '2-digit',month: 'short',year: 'numeric'}) %></div>
-                                        <span>'Click to read more...'</span>
+                                        
+                                    <span class=" click">'Click to read more...'</span>
                                     </div>
                                     <img src=" <%=blog.coverImage %>" class="my-card-img">
 
                                 </a>
-                            </div>
                             <% }) %>
                     </div>
                 </div>
