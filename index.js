@@ -34,4 +34,3 @@ connectMongo(process.env.MONGO)
         console.log("Db connected")
     })
     .catch((err) => console.log("error", err))
-
