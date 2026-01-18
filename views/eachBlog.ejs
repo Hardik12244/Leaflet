@@ -11,40 +11,87 @@
 <style>
     body {
         background-image: url('/assets/eachBlog.png');
+        
     }
 
     .main {
-        margin: 120px;
-        margin-top: 80px;
+        max-width: 90%;
+        margin-top: 10%;
+margin-left: 5%;
+        margin-right: 5%;
     }
 
     .blog-title {
         font-family: 'Playfair Display', serif;
-        font-size: 48px;
+        font-size: clamp(1.8rem, 5vw, 3rem);
         font-weight: 700;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
     }
 
     .comment-div {
-        margin: 120px;
+        max-width: 800px;
+       margin-left: 5%;
+        margin-right: 5%;
 
     }
 
     .comment-form {
         display: flex;
-        justify-content: start;
+        flex-direction: column;
         gap: 10px;
-        align-items: center;
+        align-items: stretch;
     }
 
     .my-form {
         display: flex;
         gap: 10px;
     }
-    .comment-strip{
+
+    .comment-strip {
         border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 12px;
     }
 
+    .comment-strip img {
+        border-radius: 50%;
+    }
+
+    .comment-strip div:last-child {
+        font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+        line-height: 1.6;
+        margin-top: 6px;
+    }
+
+    .blog-cover {
+        width: 100%;
+        max-width: 750px;
+        height: auto;
+        display: block;
+    }
+
+    .author {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .main p {
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+        line-height: 1.7;
+    }
+
+    @media (min-width: 768px) {
+        .comment-form {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .main,
+        .comment-div {
+            margin: 80px;
+        }
+    }
 </style>
 
 <body>
@@ -57,13 +104,16 @@
                     <%= blog.title %>
                 </div>
 
-                <img src="<%= blog.coverImage %>" width="750px" class="mb-5 mt-5">
+                <img src="<%= blog.coverImage %>" class="blog-cover mb-5 mt-5">
 
-                <div class="p-2 mb-2">
+                <div class="author p-2 mb-2">
                     <img src="<%= blog.createdBy.profilePicture %>" width="45px">
                     <%= blog.createdBy.fullName %>
-                    <div class="mt-4"><%= new Date(blog.createdAt).toLocaleString('en-IN', {hour: '2-digit',minute: '2-digit',hour12: true,day: '2-digit',month: 'short',year: 'numeric'}) %></div>
-                    
+
+                </div>
+                <div class="mt-1 mb-3">
+                    <%= new Date(blog.createdAt).toLocaleString('en-IN', {hour: '2-digit' ,minute: '2-digit' ,hour12:
+                        true,day: '2-digit' ,month: 'short' ,year: 'numeric' }) %>
                 </div>
                 <p class="pt-3">
                     <%= blog.body %>
@@ -97,6 +147,12 @@
                                 <img src="<%= comment.createdBy.profilePicture %>" alt="" width="30px">
                                 <%= comment.createdBy.fullName %>
                             </div>
+
+                            <div class="mt-1 mb-3">
+                                <%= new Date(comment.createdAt).toLocaleString('en-IN', {hour: '2-digit' ,minute: '2-digit'
+                                    ,hour12: true,day: '2-digit' ,month: 'short' ,year: 'numeric' }) %>
+                            </div>
+
                             <div>
                                 <%= comment.content %>
                             </div>

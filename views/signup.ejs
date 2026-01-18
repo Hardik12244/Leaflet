@@ -12,20 +12,36 @@
         background-image: url('/assets/login.png');
     }
 
+    .main-div {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .new-box {
-        margin-top: 100px;
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* background-color: #fef8f3; */
-        padding: 40px 50px;
+        background-color: #fef8f3;
+        padding: 20px 45px;
         border-radius: 20px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-        width: 350px;
-        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8));
-        -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-        mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+        width: 300px;
+        background-image: url('/assets/login1.png');
+
     }
 
     .my-new-btn {
@@ -39,7 +55,35 @@
         transition: all 0.2s ease;
     }
 
-    
+    .New-user {
+        margin-top: 28px;
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form label {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+
+    .new-btn {
+        background-color: rgb(240, 44, 44);
+        color: white;
+        border-radius: 10px;
+        padding: 4px 10px;
+        border: none;
+        font-size: 18px;
+
+    }
+
+    @media ((min-width:768px)) {
+        .new-box {
+            margin-top: 100px;
+            width: 350px;
+        }
+    }
 </style>
 
 <body>

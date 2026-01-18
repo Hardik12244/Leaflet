@@ -14,7 +14,7 @@ async function handleBlog(req,res){
 
 async function handleEachBlog(req,res){
     const blog = await Blog.findById(req.params.id).populate("createdBy");
-    const comments = await Comment.find({blogId:req.params.id}).populate("createdBy");
+    const comments = await Comment.find({blogId:req.params.id}).populate("createdBy").sort({ createdAt: -1 });
     console.log(comments);
     return res.render('eachBlog',{
         user:req.user,

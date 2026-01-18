@@ -16,21 +16,26 @@
     .new-box {
         margin-top: 20px;
         border-radius: 20px;
-        margin-left: 15%;
-        margin-right: 15%;
-        min-height: calc(100vh - 80px);
+        margin-left: 5%;
+        margin-right: 5%;
+
+        min-height: auto;
+
         display: flex;
         justify-content: center;
-        padding: 40px 20px;
+
     }
 
     .new-box form {
         width: 100%;
         max-width: 850px;
-        padding: 35px 40px;
+        padding: 15px 15px;
         border-radius: 20px;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(8px);
+        /* backdrop-filter: blur(8px); */
+         min-height: auto !important;
+  height: auto !important;
+  overflow: visible !important;
     }
 
     .blog-image {
@@ -53,7 +58,7 @@
         padding: 14px;
         border-radius: 12px;
         font-weight: 600;
-         width: 100%;
+        width: 100%;
 
     }
 
@@ -84,34 +89,63 @@
         justify-content: center;
         align-items: center;
     }
+
+    .new-btn {
+        background-color: rgb(240, 44, 44);
+        color: white;
+        border-radius: 10px;
+        padding: 4px 10px;
+        border: none;
+        font-size: 18px;
+    }
+
+    .div-btn {
+        margin-top: 28px;
+        gap: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media (min-width:768px) {
+        .new-box {
+            padding: 40px 20px;
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+
+        .new-box form {
+            padding: 35px 40px;
+
+        }
+    }
 </style>
 
 <body>
     <%- include('./partials/script') %>
         <!-- <%- include('./partials/nav') %> -->
 
-            <div class="new-box">
-                <form action="/blog" method="post" enctype="multipart/form-data">
-                    <div class="blog-image">
-                        <label for="coverImage" class="form-label">Cover Image</label>
-                        <input name="coverImage" type="file" class="form-control" id="coverImage"
-                            aria-describedby="coverImage" requried>
-                    </div>
+        <div class="new-box">
+            <form action="/blog" method="post" enctype="multipart/form-data">
+                <div class="blog-image">
+                    <label for="coverImage" class="form-label">Cover Image</label>
+                    <input name="coverImage" type="file" class="form-control" id="coverImage"
+                        aria-describedby="coverImage" requried>
+                </div>
 
-                    <div class="blog-title">
-                        <div class="new-label"><label for="body">Title</label></div>
-                         <input name="title" type="text"
-                            class="form-control" id="title" aria-describedby="title" required>
-                    </div>
+                <div class="blog-title">
+                    <div class="new-label"><label for="body">Title</label></div>
+                    <input name="title" type="text" class="form-control" id="title" aria-describedby="title" required>
+                </div>
 
-                    <div class="blog-body">
-                        <div class="new-label"><label for="body">Body</label></div>
-                        <textarea name="body" id="body" class="form-control" required></textarea>
-                    </div>
+                <div class="blog-body">
+                    <div class="new-label"><label for="body">Body</label></div>
+                    <textarea name="body" id="body" class="form-control" required></textarea>
+                </div>
+                <div class="div-btn"><button type="submit" class="new-btn">Submit</button> </div>
 
-                    <button type="submit" class="new-btn">Submit</button>
-                </form>
-            </div>
+            </form>
+        </div>
 
 </body>
 

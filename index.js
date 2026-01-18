@@ -21,13 +21,12 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.get('/', async (req, res) => {
-    const allBlog = await blog.find({}).sort({ createdAt: -1 });;
+    const allBlog = await blog.find({}).sort({ createdAt: -1 });
     res.render("home", {
         user: req.user,
         blogs: allBlog,
     });
 })
-console.log("MONGO =", process.env.MONGO);
 
 connectMongo(process.env.MONGO)
     .then(() => {

@@ -114,9 +114,9 @@
 
     .my-card {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
         padding: 20px 0;
         text-decoration: none;
         color: inherit;
@@ -143,18 +143,23 @@
     }
 
     .my-card-img {
-        width: 200px;
-        height: 120px;
+        width: 100%;
+        height: auto;
+        max-height: 220px;
         object-fit: cover;
         border-radius: 6px;
-        flex-shrink: 0;
+        margin-bottom: 15px;
     }
 
     .date {
         font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+                margin-bottom: 15px;
+
     }
 
     .click {
+                margin-top: 15px;
+
         font-size: clamp(0.9rem, 2.5vw, 1.4rem);
     }
 
@@ -164,6 +169,30 @@
         gap: 2rem;
     }
 
+    .my-card-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .my-card-title {
+        order: 1;
+    }
+
+    .my-card-img {
+        order: 2;
+    }
+
+    .date {
+        order: 3;
+    }
+
+    .my-card-body {
+        order: 4;
+    }
+
+    .click {
+        order: 5;
+    }
 
     @media (min-width:768px) {
         .main-box {
@@ -177,20 +206,47 @@
             margin-top: 0;
         }
 
+        .my-card {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .my-card-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            column-gap: 24px;
+            align-items: start;
+        }
+
         .my-card-body {
             font-size: 18px;
             max-width: 600px;
             -webkit-line-clamp: 4;
+            grid-column: 1;
         }
 
         .my-card-title {
             font-size: 24px;
+            grid-column: 1;
         }
 
         .my-card-img {
+            grid-column: 10;
+            grid-row: 1 / span 5;
             width: 400px;
             height: 240px;
+            object-fit: cover;
         }
+
+        .date {
+            grid-column: 1;
+        }
+
+        .click {
+            grid-column: 1;
+        }
+
     }
 </style>
 
@@ -220,26 +276,27 @@
                 <div class="container mt-5 ">
                     <div class="blog-feed">
                         <% blogs.forEach(blog=> { %>
-                                <a href="/blog/<%= blog._id %>" class="my-card">
+                            <a href="/blog/<%= blog._id %>" class="my-card">
 
-                                    <div class="my-card-content">
-                                        <h5 class="my-card-title">
-                                            <%= blog.title %>
-                                        </h5>
-                                        <div class=" date">
-                                            <%= new Date(blog.createdAt).toLocaleString('en-IN', {hour: '2-digit'
-                                                ,minute: '2-digit' ,hour12: true,day: '2-digit' ,month: 'short'
-                                                ,year: 'numeric' }) %>
-                                        </div>
-                                        <p class="my-card-body">
-                                            <%= blog.body.split(" ").slice(0, 40).join(" ") %>
+                                <div class="my-card-content">
+                                    <h5 class="my-card-title">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <img src=" <%=blog.coverImage %>" class="my-card-img">
+
+                                    <div class=" date">
+                                        <%= new Date(blog.createdAt).toLocaleString('en-IN', {hour: '2-digit'
+                                            ,minute: '2-digit' ,hour12: true,day: '2-digit' ,month: 'short'
+                                            ,year: 'numeric' }) %>
+                                    </div>
+                                    <p class="my-card-body">
+                                        <%= blog.body.split(" ").slice(0, 40).join(" ") %>
                                         </p>
                                         
                                     <span class=" click">'Click to read more...'</span>
-                                    </div>
-                                    <img src=" <%=blog.coverImage %>" class="my-card-img">
+                                </div>
 
-                                </a>
+                            </a>
                             <% }) %>
                     </div>
                 </div>
