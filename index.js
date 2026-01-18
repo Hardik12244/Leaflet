@@ -9,7 +9,7 @@ const { checkauth } = require('./middlewares/auth');
 const blog = require('./models/blog');
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 app.use(express.static(path.resolve('./public')))
 
 app.use(express.urlencoded({ extended: false }));
@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
 
 connectMongo(process.env.MONGO)
     .then(() => {
-        app.listen(port, () => console.log("Server running on port 8000"));
+        app.listen(port, () => console.log(`Server running on port ${PORT}`));
         console.log("Db connected")
     })
     .catch((err) => console.log("error", err))
