@@ -14,7 +14,7 @@ async function handleUserSignUp(req,res){
         return res.cookie("token",token).redirect('/');
         }
     catch(error){
-        return res.render('/user/signup',{
+        return res.render('signup',{
             error:error.message
         });
     }
