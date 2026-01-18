@@ -251,7 +251,7 @@
 
                                 <div class="my-card-content">
                                     <h5 class="my-card-title">
-                                        <%= blog.title %>
+                                        <%= blog.title.split(" ").length > 10 ? blog.title.split(" ").slice(0, 10).join(" ") + " ..." : blog.title %>
                                     </h5>
 
                                     <div class=" date">
@@ -260,7 +260,7 @@
                                             ,year: 'numeric' }) %>
                                     </div>
                                     <p class="my-card-body">
-                                        <%= blog.body.split(" ").slice(0, 40).join(" ") %>
+                                        <%= blog.body.split(" ").slice(0, 40).join(" ")+ " ..." %>
                                         </p>
                                         
                                     <span class=" click">'Click to read more...'</span>
