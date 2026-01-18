@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
 
 connectMongo(process.env.MONGO)
     .then(() => {
-        app.listen(port, () => console.log(`Server running on port ${PORT}`));
+        app.listen(port, () => console.log(`Server running on port ${port}`));
         console.log("Db connected")
     })
     .catch((err) => console.log("error", err))
